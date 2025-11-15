@@ -35,6 +35,8 @@ class TestDeck(unittest.TestCase):
         deck.remove_card('Ace', 'Spades')
         for card in deck.cards:
             self.assertFalse(card.rank == 'Ace' and card.suit == 'Spades')
+        if not any(card.rank == 'Ace' and card.suit == 'Spades' for card in deck.pool):
+            self.fail("Removed card not found in pool")
 
     def test_remove_nonexistent_card(self):
         """Test removing a card that does not exist in the deck."""

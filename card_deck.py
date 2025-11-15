@@ -37,9 +37,10 @@ class Deck:
             return None
 
     def remove_card(self, rank, suit):
-        """Remove a specific card from the deck."""
+        """Remove a specific card from the deck given its rank and suit. Then add it to the pool."""
         for card in self.cards:
             if card.rank == rank and card.suit == suit:
                 self.cards.remove(card)
+                self.pool.append(card)
                 return
         return

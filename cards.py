@@ -8,7 +8,7 @@ The class must include:
 
 
 class Card:
-    """create a card of a standard deck of playing cards given rank and suit."""
+    """create a card of a standard deck of playing cards given rank and suit. The number and the ranks are string elements"""
 
     SUITS = ["Hearts", "Diamonds", "Clubs", "Spades"]
     RANKS = [
@@ -28,6 +28,7 @@ class Card:
     ]
 
     def __init__(self, rank, suit):
+        """Initialize the card with rank and suit. It is to notice that the usage of a method to check if the card exists was useful to prevent the creation of invalid cards."""
         if rank in Card.RANKS and suit in Card.SUITS:
             self.rank = rank
             self.suit = suit

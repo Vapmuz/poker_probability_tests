@@ -37,7 +37,6 @@ class Card:
             self.rank = None
             self.suit = None
             self.exists = False
-
     def display(self):
         """Return a string representation of the card."""
         if self.exists:

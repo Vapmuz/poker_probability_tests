@@ -1,9 +1,11 @@
 """
 It contains a class that represents a hand of playing cards o the real pool.
-the class must do:
-    take a card from the pool and add it to the hand"""
-
+"""
 class Hand:
+    """
+    the class must do:
+    take an object and add it to self.cards, a list in the class Hand
+    """
     def __init__(self):
         """Initialize an empty hand."""
         self.cards = []

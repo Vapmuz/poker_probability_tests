@@ -47,3 +47,7 @@ class Card:
     def card_exists(self):
         """Check if the card exists in a standard deck."""
         return self.exists
+
+    def __str__(self):
+        """String representation of the card."""
+        return self.display()

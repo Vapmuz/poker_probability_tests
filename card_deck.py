@@ -28,7 +28,10 @@ class Deck:
         random.shuffle(self.cards)
 
     def deal_card(self):
-        """Deal a card from the deck and add it to the pool. Pop the card from the deck and append to the pool."""
+        """
+        Deal a card from the deck and add it to the pool. Pop the card from the deck and append to the pool.
+        returns the dealt card
+        """
         if self.cards:
             card = self.cards.pop()
             self.pool.append(card)

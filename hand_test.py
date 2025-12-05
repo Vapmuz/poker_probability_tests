@@ -9,7 +9,6 @@ class TestHand(unittest.TestCase):
     def test_add_card(self):
         """Test adding a card to the hand."""
         card= ('5S')  # Example pool of cards
-        position = 2  # Position of the card to add
         self.hand.add_card(card)
         self.assertIn('5S', self.hand.cards)
         self.assertEqual(len(self.hand.cards), 1)

@@ -25,3 +25,7 @@ class TestCard(unittest.TestCase):
         card2 = Card("Joker", "None")
         self.assertTrue(card1.card_exists())
         self.assertFalse(card2.card_exists())
+    def test_str_representation(self):
+        """Test the string representation of the card."""
+        card = Card("Queen", "Diamonds")
+        self.assertEqual(str(card), "Queen of Diamonds")

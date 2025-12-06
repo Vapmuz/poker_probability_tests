@@ -28,7 +28,28 @@ class GameAssembler(Deck):
         hand_test = Hand()
         hand_test.add_card(to_test)
         return(hand_test.cards)
-    def add_to_player_hand(self, player_index):
+    def draw_to_player(self, player_index):
         """Add a card to a player's hand given the player index and the card"""
         card = self.deal_card()
         self.players_hands[player_index].add_card(card)
+
+    def draw_all_player(self):
+        """draw a card for everyone"""
+        a=0
+        for x in (self.players_hands): 
+            card =self.deal_card()
+            x.add_card(card)
+            a=+1
+
+    def display_hands(self):
+        """
+        display all the hands
+            it returns a string containing a clear view of the hand
+        """
+        hands =[]
+        a=0
+        for _ in self.players_hands:
+            cards = [card.display() for card in self.players_hands[a].cards]
+            a=+1
+            hands.append(cards)
+        return hands

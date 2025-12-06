@@ -9,7 +9,6 @@ class Hand:
     def __init__(self):
         """Initialize an empty hand."""
         self.cards = []
-
     def add_card(self, card):
         """Add a card to the hand.
 

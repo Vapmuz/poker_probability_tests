@@ -28,12 +28,31 @@ class unitTestGameAssembler(unittest.TestCase):
         self.assertIn(dealt_card, card)
         self.assertEqual(card[0].display(),"Ace of Spades")  # Just to ensure the method works without error
         
-    def test_add_to_player_hand(self):
+    def test_draw_to_player_hand(self):
         """test adding a card to a player's hand"""
         game = GameAssembler(2)
         game.players_hands[0].add_card("prova")
         self.assertEqual(game.players_hands[0].cards[0], "prova")
         game.players_hands[1].add_card(game.deal_card())
         self.assertEqual(game.players_hands[1].cards[0].display(), "Ace of Spades")
-        game.players_hands[1].add_card(game.deal_card())
+        game.draw_to_player(1)
         self.assertEqual(game.players_hands[1].cards[1].display(), "King of Spades")
+
+    def test_draw_card_for_everybody(self):
+        """
+        draw a card for every hand in the play
+        """
+        game = GameAssembler(2)
+        game.draw_all_player()
+        self.assertEqual(game.players_hands[0].cards[0].display(), "Ace of Spades")
+        self.assertEqual(game.players_hands[1].cards[0].display(), "King of Spades")
+        self.assertEqual(True,True)
+    def test_display_hands(self):
+        """test for the display hand function"""
+        game = GameAssembler(2)
+        self.assertEqual(game.display_hands(), [[],[]])
+        game.draw_to_player(1)
+        self.assertEqual(game.display_hands(), [[],['Ace of Spades']])
+        game.draw_all_player()
+        self.assertEqual(game.display_hands(),[['King of Spades'], ['Ace of Spades','Queen of Spades']])
+        

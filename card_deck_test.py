@@ -44,3 +44,11 @@ class TestDeck(unittest.TestCase):
 
         for card in deck.cards:
             self.assertFalse(card.rank == 'Ace' and card.suit == 'None')
+    
+    def test_out_of_range(self):
+        """test if the deck raises arn error when asked for too many cards"""
+        deck = Deck(1)
+        for _ in range(51):
+            deck.deal_card()
+        with self.assertRaises(IndexError):
+            deck.deal_card()

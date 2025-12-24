@@ -15,7 +15,10 @@ class Deck:
     """Class to represent a standard or multiple standard decks of playing cards."""
 
     def __init__(self, num_decks):
-        """Initialize the deck with the specified number of standard decks."""
+        """
+        Initialize the deck with the specified number of standard decks.
+        
+        """
         self.cards = []
         for _ in range(num_decks):
             for suit in Card.SUITS:
@@ -36,8 +39,7 @@ class Deck:
             card = self.cards.pop()
             self.pool.append(card)
             return card
-        else:
-            return None
+        raise IndexError("player asked for too many cards")
 
     def remove_card(self, rank, suit):
         """Remove a specific card from the deck given its rank and suit. Then add it to the pool."""

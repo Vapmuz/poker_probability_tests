@@ -47,6 +47,7 @@ class unitTestGameAssembler(unittest.TestCase):
         self.assertEqual(game.players_hands[0].cards[0].display(), "Ace of Spades")
         self.assertEqual(game.players_hands[1].cards[0].display(), "King of Spades")
         self.assertEqual(True,True)
+
     def test_display_hands(self):
         """test for the display hand function"""
         game = GameAssembler(2)
@@ -56,3 +57,22 @@ class unitTestGameAssembler(unittest.TestCase):
         game.draw_all_player()
         self.assertEqual(game.display_hands(),[['King of Spades'], ['Ace of Spades','Queen of Spades']])
         
+    def test_display_ranks(self):
+        """test for the  display_ranks function"""
+        game = GameAssembler(2)
+        self.assertEqual(game.display_ranks(), [[],[]])
+        game.draw_to_player(1)
+        self.assertEqual(game.display_ranks(), [[],['Ace']])
+        game.draw_all_player()
+        self.assertEqual(game.display_ranks(),[['King'], ['Ace','Queen']])
+ 
+    def test_display_suits(self):
+        """test for the display suit function"""
+        game = GameAssembler(2)
+        self.assertEqual(game.display_suits(), [[],[]])
+        game.draw_to_player(1)
+        self.assertEqual(game.display_suits(), [[],['Spades']])
+        game.draw_all_player()
+        self.assertEqual(game.display_suits(),[['Spades'], ['Spades','Spades']])
+        
+ 

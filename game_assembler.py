@@ -50,8 +50,41 @@ class GameAssembler(Deck):
         for card in hand.cards:
             cards.append(card.display())
         return cards
-    
+
+    def display_player_hand_in_rank(self, player_number):
+        """display a specific player hand using rank"""
+        hand = self.players_hands[player_number]
+        cards= []
+        for card in hand.cards:
+            cards.append(card.rank)
+        return cards
+
+
+    def display_player_hand_in_suits(self, player_number):
+        """display a specific player hand using rank"""
+        hand = self.players_hands[player_number]
+        cards= []
+        for card in hand.cards:
+            cards.append(card.suit)
+        return cards
+
+    def display_all_ranks(self):
+        """display all the hands in the table"""
+        hands = []
+        for i in range(self.num_players):
+            hands.append(self.display_player_hand_in_rank(i))
+        return hands
+ 
+    def display_all_suits(self):
+        """display all the hands in the table"""
+        hands = []
+        for i in range(self.num_players):
+            hands.append(self.display_player_hand_in_suits(i))
+        return hands
+       
+
     def display_all_hands(self):
+        """display all the hands in the table"""
         hands = []
         for i in range(self.num_players):
             hands.append(self.display_player_hand(i))

@@ -20,4 +20,5 @@ TODO:
     do a good readme READABLE from web [ ]
     do the points class [  ]
     decide the next phases [ ]
+    
  

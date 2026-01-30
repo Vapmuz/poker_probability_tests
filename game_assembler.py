@@ -42,7 +42,7 @@ class GameAssembler(Deck):
         for x in (self.players_hands): 
             card =self.deal_card()
             x.add_card(card)
-    
+
     def display_player_hand(self, player_number):
         """display a specific player hand"""
         hand = self.players_hands[player_number]
@@ -50,17 +50,11 @@ class GameAssembler(Deck):
         for card in hand.cards:
             cards.append(card.display())
         return cards
-
-    def display_player_hands(self):
-        """
-        display all the hands
-            it returns a list containing strings that are easily human readable"""
-        hands =[]
-        a=0
-        for _ in self.players_hands:
-            cards = [card.display() for card in self.players_hands[a].cards]
-            a=+1
-            hands.append(cards)
+    
+    def display_all_hands(self):
+        hands = []
+        for i in range(self.num_players):
+            hands.append(self.display_player_hand(i))
         return hands
     
     def display_player_ranks(self):

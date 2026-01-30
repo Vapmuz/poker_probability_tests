@@ -48,15 +48,6 @@ class TestGameAssembler(unittest.TestCase):
         self.assertEqual(game.players_hands[1].cards[0].display(), "King of Spades")
         self.assertEqual(True,True)
 
-    def test_display_player_hands(self):
-        """test for the display hand function"""
-        game = GameAssembler(2,1)
-        self.assertEqual(game.display_player_hands(), [[],[]])
-        game.draw_to_player(1)
-        self.assertEqual(game.display_player_hands(), [[],['Ace of Spades']])
-        game.draw_all_player()
-        self.assertEqual(game.display_player_hands(),[['King of Spades'], ['Ace of Spades','Queen of Spades']])
-        
     def test_display_player_ranks(self):
         """test for the  display_player_ranks function"""
         game = GameAssembler(2,1)
@@ -95,4 +86,14 @@ class TestGameAssembler(unittest.TestCase):
         self.assertEqual(game.players_hands[1].cards[0].display(), "King of Spades")
         game.pop_player(0) #remove player one that removes the ace of spades
         self.assertEqual(game.display_player_hand(0),["King of Spades"])
- 
+
+    def test_display_all_hands(self):
+        """test all player hands"""
+        game = GameAssembler(3,1)
+
+        for i in range(3):
+            game.draw_all_player()
+
+        self.assertEqual(game.display_all_hands(), [['Ace of Spades', 'Jack of Spades', '8 of Spades'],
+                                                    ['King of Spades', '10 of Spades', '7 of Spades'],
+                                                    ['Queen of Spades', '9 of Spades', '6 of Spades']])

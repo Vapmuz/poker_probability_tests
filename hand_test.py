@@ -2,6 +2,7 @@
 import unittest
 from hand import Hand       
 class TestHand(unittest.TestCase):
+    """test the hand class"""
     def setUp(self):
         """Set up a Hand instance before each test."""
         self.hand = Hand()

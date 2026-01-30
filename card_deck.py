@@ -1,7 +1,8 @@
 """
 File for the card_deck class.
 This module includes:
-- A class to represent a standard or multiple standard decks of playing cards using the module cards.py.
+- A class to represent a standard or multiple standard decks of playing 
+cards using the module cards.py.
 - A method to shuffle the deck created.
 - A method to deal a card from the deck that goes in the self.pool list.
 - A method to remove a specific card from the deck.
@@ -12,11 +13,13 @@ import random
 
 
 class Deck:
-    """Class to represent a standard or multiple standard decks of playing cards."""
+    """Class to represent a standard or multiple standard decks 
+    of playing cards."""
 
     def __init__(self, num_decks):
         """
-        Initialize the deck with the specified number of standard decks.
+        Initialize the deck with the specified number of 
+        standard decks.
         
         """
         self.cards = []
@@ -32,7 +35,8 @@ class Deck:
 
     def deal_card(self):
         """
-        Deal a card from the deck and add it to the pool. Pop the card from the deck and append to the pool.
+        Deal a card from the deck and add it to the pool. 
+        Pop the card from the deck and append to the pool.
         returns the dealt card
         """
         if self.cards:
@@ -42,7 +46,8 @@ class Deck:
         raise IndexError("player asked for too many cards")
 
     def remove_card(self, rank, suit):
-        """Remove a specific card from the deck given its rank and suit. Then add it to the pool."""
+        """Remove a specific card from the deck given its 
+        rank and suit. Then add it to the pool."""
         for card in self.cards:
             if card.rank == rank and card.suit == suit:
                 self.cards.remove(card)

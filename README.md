@@ -20,5 +20,7 @@ TODO:
     do a good readme READABLE from web [ ]
     do the points class [  ]
     decide the next phases [ ]
+    31.01.26
+    do a raw_return_card_on_table function for the handle point[  ]
     
  

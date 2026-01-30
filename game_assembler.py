@@ -9,25 +9,28 @@ this module must do:
 from hand import Hand
 from card_deck import Deck
 class GameAssembler(Deck):
-    """class to handle the cards and the game, the class inherited from Deck"""
-    def __init__(self, num_players):
+    """class to handle the cards and the game, the class inherited from Deck.
+      The class takes as argument the number of people, the number of decks  """
+    def __init__(self, num_players, nr_decks):
         """
         instantiate the deck and the Hand
         create a matrix to handle the players hands
         """
-        super().__init__(2)
+        super().__init__(nr_decks)
         self.num_players = num_players
         self.players_hands = [Hand() for _ in range(num_players)]
         self.discarded_cards = Hand()
 
     def access_hand_class(self, to_test):
-        """function used to set up and test the accessibility of the Hands using the game asembler"""
+        """function used to set up and test the accessibility of
+          the Hands using the game asembler"""
         hand_test = Hand()
         hand_test.add_card(to_test)
         return(hand_test.cards)
 
     def draw_to_player(self, player_index):
-        """Add a card to a player's hand given the player index and the card"""
+        """Add a card to a player's hand given 
+        the player index"""
         card = self.deal_card()
         self.players_hands[player_index].add_card(card)
 
@@ -39,8 +42,16 @@ class GameAssembler(Deck):
         for x in (self.players_hands): 
             card =self.deal_card()
             x.add_card(card)
+    
+    def display_player_hand(self, player_number):
+        """display a specific player hand"""
+        hand = self.players_hands[player_number]
+        cards= []
+        for card in hand.cards:
+            cards.append(card.display())
+        return cards
 
-    def display_hands(self):
+    def display_player_hands(self):
         """
         display all the hands
             it returns a list containing strings that are easily human readable"""
@@ -52,7 +63,7 @@ class GameAssembler(Deck):
             hands.append(cards)
         return hands
     
-    def display_ranks(self):
+    def display_player_ranks(self):
         """
         Display all the people's cards ranks
             it returns a list containing strings that are easily human-readable
@@ -66,7 +77,7 @@ class GameAssembler(Deck):
         return hands
     
     
-    def display_suits(self):
+    def display_player_suits(self):
         """
         Display all the people's cards ranks
             it returns a list containing strings that are easily human-readable
@@ -78,4 +89,8 @@ class GameAssembler(Deck):
             a=+1
             hands.append(suits)
         return hands
+    
+    def pop_player(self, number_player):
+        """pop a player out of the deck"""
+        self.players_hands.pop(number_player)
     

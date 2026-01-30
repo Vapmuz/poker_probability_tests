@@ -1,27 +1,27 @@
 """make a unittest for the game assembler module"""
 import unittest
 from game_assembler import GameAssembler    
-import cards as crds
 
 
-class unitTestGameAssembler(unittest.TestCase):
+
+class TestGameAssembler(unittest.TestCase):
     """class to test the game assembler module"""
     def test_game_assembler_initialization(self):
         """test the initialization of the game assembler class"""
-        game = GameAssembler(4)
+        game = GameAssembler(4, 2)
         self.assertEqual(game.num_players, 4)
         self.assertEqual(len(game.cards), 104)  # Since it initializes with 2 decks
 
     def test_access_hand_class(self):
         """test the access to the Hand class through GameAssembler"""
-        game = GameAssembler(2)
+        game = GameAssembler(2,1)
         card = game.access_hand_class("prova")
         self.assertIsNotNone(card)
         self.assertIn("prova", card)
 
     def test_access_hand_class_with_dealt_card(self):
         """test the access to the Hand class through GameAssembler with a dealt card"""
-        game = GameAssembler(2)
+        game = GameAssembler(2,1)
         dealt_card = game.deal_card()
         card = game.access_hand_class(dealt_card)
         self.assertIsNotNone(card)
@@ -30,7 +30,7 @@ class unitTestGameAssembler(unittest.TestCase):
         
     def test_draw_to_player_hand(self):
         """test adding a card to a player's hand"""
-        game = GameAssembler(2)
+        game = GameAssembler(2,1)
         game.players_hands[0].add_card("prova")
         self.assertEqual(game.players_hands[0].cards[0], "prova")
         game.players_hands[1].add_card(game.deal_card())
@@ -42,37 +42,57 @@ class unitTestGameAssembler(unittest.TestCase):
         """
         draw a card for every hand in the play
         """
-        game = GameAssembler(2)
+        game = GameAssembler(2,1)
         game.draw_all_player()
         self.assertEqual(game.players_hands[0].cards[0].display(), "Ace of Spades")
         self.assertEqual(game.players_hands[1].cards[0].display(), "King of Spades")
         self.assertEqual(True,True)
 
-    def test_display_hands(self):
+    def test_display_player_hands(self):
         """test for the display hand function"""
-        game = GameAssembler(2)
-        self.assertEqual(game.display_hands(), [[],[]])
+        game = GameAssembler(2,1)
+        self.assertEqual(game.display_player_hands(), [[],[]])
         game.draw_to_player(1)
-        self.assertEqual(game.display_hands(), [[],['Ace of Spades']])
+        self.assertEqual(game.display_player_hands(), [[],['Ace of Spades']])
         game.draw_all_player()
-        self.assertEqual(game.display_hands(),[['King of Spades'], ['Ace of Spades','Queen of Spades']])
+        self.assertEqual(game.display_player_hands(),[['King of Spades'], ['Ace of Spades','Queen of Spades']])
         
-    def test_display_ranks(self):
-        """test for the  display_ranks function"""
-        game = GameAssembler(2)
-        self.assertEqual(game.display_ranks(), [[],[]])
+    def test_display_player_ranks(self):
+        """test for the  display_player_ranks function"""
+        game = GameAssembler(2,1)
+        self.assertEqual(game.display_player_ranks(), [[],[]])
         game.draw_to_player(1)
-        self.assertEqual(game.display_ranks(), [[],['Ace']])
+        self.assertEqual(game.display_player_ranks(), [[],['Ace']])
         game.draw_all_player()
-        self.assertEqual(game.display_ranks(),[['King'], ['Ace','Queen']])
+        self.assertEqual(game.display_player_ranks(),[['King'], ['Ace','Queen']])
  
-    def test_display_suits(self):
+    def test_display_player_suits(self):
         """test for the display suit function"""
-        game = GameAssembler(2)
-        self.assertEqual(game.display_suits(), [[],[]])
+        game = GameAssembler(2,1)
+        self.assertEqual(game.display_player_suits(), [[],[]])
         game.draw_to_player(1)
-        self.assertEqual(game.display_suits(), [[],['Spades']])
+        self.assertEqual(game.display_player_suits(), [[],['Spades']])
         game.draw_all_player()
-        self.assertEqual(game.display_suits(),[['Spades'], ['Spades','Spades']])
-        
+        self.assertEqual(game.display_player_suits(),[['Spades'], ['Spades','Spades']])
+    
+    def test_display_a_player_hand(self):
+        "test the display hand of a player"
+
+        game =GameAssembler(5,1)
+        game.draw_to_player(0)
+        cards = game.display_player_hand(0)
+        self.assertEqual(cards, ["Ace of Spades"])
+        game.draw_to_player(0)
+        game.draw_to_player(0)
+        cards = game.display_player_hand(0)
+        self.assertEqual(cards, ["Ace of Spades","King of Spades","Queen of Spades"])
+
+    def test_pop_player(self):
+        """test the pop_player function"""
+        game = GameAssembler(2,1)
+        game.draw_all_player()
+        self.assertEqual(game.players_hands[0].cards[0].display(), "Ace of Spades")
+        self.assertEqual(game.players_hands[1].cards[0].display(), "King of Spades")
+        game.pop_player(0) #remove player one that removes the ace of spades
+        self.assertEqual(game.display_player_hand(0),["King of Spades"])
  

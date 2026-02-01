@@ -20,4 +20,9 @@ TODO:
     do a good readme READABLE from web [ ]
     do the points class [  ]
     decide the next phases [ ]
- 
+    Graphics:
+    card graphics [  ]
+    main menu graphic [X]
+    button graphic [X]
+    graphic manager [X]
+    graphic helper [X]

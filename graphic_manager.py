@@ -30,9 +30,9 @@ class GraphicManager:
                             , "assets/buttons/button_qcurgame.png",
                               "assets/buttons/button_qcurgame_hov.png"))
 
-        self.bg_main = pygame.image.load("assets/bg_menu.png").convert()
-        self.bg_single_p_set = pygame.image.load("assets/bg_menu.png").convert()
-        self.bg_single_p_game = pygame.image.load("assets/bg_menu.png").convert()
+        self.bg_main = pygame.image.load("assets/bg/bg_menu.png").convert()
+        self.bg_single_p_set = pygame.image.load("assets/bg/bg_menu.png").convert()
+        self.bg_single_p_game = pygame.image.load("assets/bg/bg_menu.png").convert()
 
     def update_graphic_state(self, display, mouse_pos): 
 

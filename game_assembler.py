@@ -19,7 +19,7 @@ class GameAssembler(Deck):
         super().__init__(nr_decks)
         self.num_players = num_players
         self.players_hands = [Hand() for _ in range(num_players)]
-        self.discarded_cards = Hand()
+        self.cards_on_table = Hand()
 
     def access_hand_class(self, to_test):
         """function used to set up and test the accessibility of
@@ -50,8 +50,40 @@ class GameAssembler(Deck):
         for card in hand.cards:
             cards.append(card.display())
         return cards
-    
+
+    def display_player_hand_in_rank(self, player_number):
+        """display a specific player hand using rank"""
+        hand = self.players_hands[player_number]
+        cards= []
+        for card in hand.cards:
+            cards.append(card.rank)
+        return cards
+
+    def display_player_hand_in_suits(self, player_number):
+        """display a specific player hand using rank"""
+        hand = self.players_hands[player_number]
+        cards= []
+        for card in hand.cards:
+            cards.append(card.suit)
+        return cards
+
+    def display_all_ranks(self):
+        """display all the hands in the table"""
+        hands = []
+        for i in range(self.num_players):
+            hands.append(self.display_player_hand_in_rank(i))
+        return hands
+ 
+    def display_all_suits(self):
+        """display all the hands in the table"""
+        hands = []
+        for i in range(self.num_players):
+            hands.append(self.display_player_hand_in_suits(i))
+        return hands
+       
+
     def display_all_hands(self):
+        """display all the hands in the table"""
         hands = []
         for i in range(self.num_players):
             hands.append(self.display_player_hand(i))
@@ -83,6 +115,14 @@ class GameAssembler(Deck):
             a=+1
             hands.append(suits)
         return hands
+    
+    def raw_return_player_cards(self, player_index):
+        """return the card class of a palyer"""
+        cards_player =[]
+        for x in self.players_hands[player_index].cards:
+            cards_player.append(x)
+        return(cards_player)
+    
     
     def pop_player(self, number_player):
         """pop a player out of the deck"""

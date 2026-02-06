@@ -1,12 +1,15 @@
 """
 Class to handle the poker points
-    it shoukd take the cards from the pool and from a player 
-    to calculate a rating of the game (from 1 to 10) to 
-    assign for then winning   
+
+    it shoukd take the cards from the pool and from a player's hand
+
+    calculate the rating of a player's game (from 1 to 10)
+    
+    it should return a dictionary containing every useful data to decide the winner
 """
 
 
-class HandlePoints():
+class HandlePoints(): 
     """a class to handle the points,
         takes a list of values as argument. 
         Expects it to be a Card class """
@@ -31,8 +34,24 @@ class HandlePoints():
             "Clubs":0, 
             "Spades":0
             }
+        self.number_cards_conversion={
+            "2":2,
+            "3":3,
+            "4":4,
+            "5":5,
+            "6":6,
+            "7":7,
+            "8":8,
+            "9":9,
+            "10":10,
+            "Jack":11,
+            "Queen":12,
+            "King":13,
+            "Ace":1,           
+        }
         self.pool= sum(cards, [])
-
+        self.points_d = {'value':0, 'high_card':0 ,"couple_rank":0,"tris_card":0, "lowest_card_straight":0,}
+ 
     def cards_values(self):
         """if a keyword matches the dictionary 
         then increment the values of one"""
@@ -44,7 +63,15 @@ class HandlePoints():
             else:
                 raise ValueError ("putted an unexpected value in the counting method")
 
-
-        
-        
-
+    def count_high_card(self):
+        """count the highest card of the deck"""
+        for key, value in list(self.values.items())[:13]: 
+            if value>0 and self.points_d["high_card"]!=1: 
+                value_high_card =self.points_d["high_card"]
+                value_card = self.number_cards_conversion[key]
+                if value_card > value_high_card:
+                    if value_high_card != 1:
+                        self.points_d["high_card"] = value_card
+                if value_card ==1:
+                    self.points_d["high_card"] = value_card !=1  
+            

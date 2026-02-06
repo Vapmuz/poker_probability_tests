@@ -2,6 +2,7 @@
 import unittest
 from handle_points import HandlePoints
 from cards import Card
+
 class TestHandlePoints(unittest.TestCase):
     """test the handle points class"""
     def test_init(self):
@@ -11,11 +12,11 @@ class TestHandlePoints(unittest.TestCase):
     
     def test_card_values(self):
         """test if incorrect values and correct ones are handled correctly"""
-        handle_points= HandlePoints([[Card('Ace', "Spades"),Card('2','Clubs')]])
+        handle_points= HandlePoints([[  Card("3","Clubs"),Card("2", "Spades"),Card('Ace', "Spades"),Card('2','Clubs')]])
         handle_points.cards_values()
         self.assertEqual(handle_points.values,{
-            "2":1,
-            "3":0,
+            "2":2,
+            "3":1,
             "4":0,
             "5":0,
             "6":0,
@@ -29,7 +30,47 @@ class TestHandlePoints(unittest.TestCase):
             "Ace":1,
             "Hearts":0,
             "Diamonds":0,
-            "Clubs":1, 
-            "Spades":1
+            "Clubs":2, 
+            "Spades":2
             })
+
+
+    def test_count_high_card(self):
+        """test for count_high_card"""
+        hp = HandlePoints([[Card("2", "Spades"), Card("3","Clubs"), Card("Ace","Spades")]])
+        hp.cards_values()
+        hp.count_high_card()
+        self.assertEqual(hp.points_d,{})
+
+
+
+"""
+    def test_count_couple(self):
+        hp = HandlePoints()
+
+    def test_count_double_couple(self):
+       hp = HandlePoints()
+ 
+    def test_count_tris(self):
+       hp = HandlePoints()
+    
+    def test_count_color(self):
+       hp = HandlePoints()
+   
+    def test_count_straight(self):
+       hp = HandlePoints()
+  
+    def test_count_full_house(self):
+        hp = HandlePoints()
+     
+    def test_count_four_of_a_kind(self):
+        hp = HandlePoints()
+ 
+    def test_straight_flush(self):
+        hp = HandlePoints()
+    
+    def test_royal_flush(self):
+        hp = HandlePoints()"""
+
+
         

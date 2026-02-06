@@ -27,7 +27,17 @@ class TestGameAssembler(unittest.TestCase):
         self.assertIsNotNone(card)
         self.assertIn(dealt_card, card)
         self.assertEqual(card[0].display(),"Ace of Spades")  # Just to ensure the method works without error
-        
+
+    def test_draw_to_table(self):
+        """test draw cards to the table"""
+        game = GameAssembler(3,1)
+        game.draw_to_table()
+        game.draw_to_table()
+        game.draw_to_table()
+        self.assertEqual(game.cards_on_table.cards[0].rank,'Ace')
+        self.assertEqual(game.cards_on_table.cards[0].suit, "Spades")
+
+
     def test_draw_to_player_hand(self):
         """test adding a card to a player's hand"""
         game = GameAssembler(2,1)
@@ -153,7 +163,9 @@ class TestGameAssembler(unittest.TestCase):
             ['Spades', 'Spades', 'Spades'],
             ['Spades', 'Spades', 'Spades'],
             ['Spades', 'Spades', 'Spades']])
-        
+
+
+
     def test_raw_return_player_cards(self):
         """test the card taking method"""
         game = GameAssembler(3,1)
@@ -161,4 +173,13 @@ class TestGameAssembler(unittest.TestCase):
         card= game.raw_return_player_cards(0)
         self.assertEqual(card[0].rank, 'Ace')
         self.assertEqual(card[0].suit, "Spades")
-     
+
+    def test_raw_return_table_cards(self):
+        """test the raw_return_cards function"""
+        game= GameAssembler(3,1)
+        cards = game.raw_return_table_cards()
+        self.assertEqual(cards, [])
+        game.draw_to_table()
+        cards = game.raw_return_table_cards()
+        self.assertEqual(cards[0].rank,"Ace")
+        self.assertEqual(cards[0].suit, "Spades")

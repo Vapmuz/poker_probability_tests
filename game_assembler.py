@@ -28,6 +28,12 @@ class GameAssembler(Deck):
         hand_test.add_card(to_test)
         return(hand_test.cards)
 
+    def draw_to_table(self):
+        """draw a card from the deck, put it on the table"""
+        card = self.deal_card()
+        self.cards_on_table.add_card(card)
+        
+
     def draw_to_player(self, player_index):
         """Add a card to a player's hand given 
         the player index"""
@@ -122,8 +128,14 @@ class GameAssembler(Deck):
         for x in self.players_hands[player_index].cards:
             cards_player.append(x)
         return(cards_player)
-    
-    
+
+    def raw_return_table_cards(self):
+        """return the cards on the table"""
+        cards= []
+        for x in self.cards_on_table.cards:
+            cards.append(x)
+        return cards
+
     def pop_player(self, number_player):
         """pop a player out of the deck"""
         self.players_hands.pop(number_player)

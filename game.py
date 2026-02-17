@@ -1,5 +1,5 @@
-import pygame
 import sys
+import pygame
 import graphic_manager
 from graphic_helper import GlobalGraphicsHelper
 

@@ -64,14 +64,44 @@ class HandlePoints():
                 raise ValueError ("putted an unexpected value in the counting method")
 
     def count_high_card(self):
-        """count the highest card of the deck"""
+        """
+        count the highest card of the deck, modify the points_d
+            take the first 13 elements in the self.points_d (the cards ranks)
+                if there are cards of that type then check if the high card is lower
+                if ace (the value is one) high card =1 high card is = 1
+
+        """
         for key, value in list(self.values.items())[:13]: 
-            if value>0 and self.points_d["high_card"]!=1: 
+            if value>0: 
                 value_high_card =self.points_d["high_card"]
                 value_card = self.number_cards_conversion[key]
                 if value_card > value_high_card:
                     if value_high_card != 1:
                         self.points_d["high_card"] = value_card
                 if value_card ==1:
-                    self.points_d["high_card"] = value_card !=1  
+                    self.points_d["high_card"] = value_card  
+
+    def count_if(self, number):
+        """
+        method to count if there are ranks or suits that have the specified number 
+         
+        :param self: self 
+        :param number: select if couple, tris, poker, 5 cards ...
+        
+        how:
+        
+        return: the ranks or the suits in a list that have the desired amount 
+        """
+
+
+        card_type = []
+        for key , value in list(self.values.items()):
+            if value == number:
+                card_type.append(key)
+        return(card_type)
+
+
+
+    
+
             

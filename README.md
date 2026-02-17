@@ -16,20 +16,11 @@ TODO:
         make a way to display neatly the hands of the players [x]
         draw a card for everybody [x]
     complete assembler class [x]
-    24122025
+    24.12.25
     do a good readme READABLE from web [ ]
     do the points class [  ]
     decide the next phases [ ]
-<<<<<<< HEAD
-    Graphics:
-    card graphics [  ]
-    main menu graphic [X]
-    button graphic [X]
-    graphic manager [X]
-    graphic helper [X]
-=======
     31.01.26
     do a raw_return_card_on_table function for the handle point[  ]
     
  
->>>>>>> refs/remotes/origin/main
